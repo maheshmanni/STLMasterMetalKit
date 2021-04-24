@@ -16,6 +16,7 @@ class ViewController: NSUIViewController, UIDocumentPickerDelegate, RPPreviewVie
     var renderer: Renderer!
     var cameraController: CameraController!
     let screenRecorder = RPScreenRecorder.shared()
+    var mPreviousPt = CGPoint.init(x: 0.0, y: 0.0)
     @IBOutlet weak var recordBtn: UIBarButtonItem!
     @IBOutlet weak var micBtn: UIBarButtonItem!
     var mtkView: MTKView {
@@ -37,7 +38,24 @@ class ViewController: NSUIViewController, UIDocumentPickerDelegate, RPPreviewVie
 
         mtkView.framebufferOnly = false
         cameraController = CameraController()
-        renderer.viewMatrix = cameraController.viewMatrix
+        renderer.viewMatrix = cameraController.GetViewMatrix()//cameraController.viewMatrix
+        
+        let pinch = UIPinchGestureRecognizer.init(target: self, action: #selector(scalePiece(_:)))
+        mtkView.addGestureRecognizer(pinch)
+        
+        let swipe = UIPanGestureRecognizer.init(target: self, action: #selector(Swipe(_:)))
+        swipe.minimumNumberOfTouches = 1
+        swipe.maximumNumberOfTouches = 1
+        mtkView.addGestureRecognizer(swipe)
+        
+        let doublePan = UIPanGestureRecognizer.init(target: self, action: #selector(DoublePan(_:)))
+        doublePan.minimumNumberOfTouches = 2
+        doublePan.maximumNumberOfTouches = 2
+        mtkView.addGestureRecognizer(doublePan)
+        
+        let doubleTap = UITapGestureRecognizer.init(target: self, action: #selector(DoubleTap(_:)))
+        doubleTap.numberOfTapsRequired = 2
+        mtkView.addGestureRecognizer(doubleTap)
     }
     
     func OnSnapShotCapture() {
@@ -48,6 +66,53 @@ class ViewController: NSUIViewController, UIDocumentPickerDelegate, RPPreviewVie
         self.present(pv, animated: true, completion: nil)
         let capturedInage = UIImage.init(cgImage: (mtkView.currentDrawable?.texture.toImage()!)!)
         pv.SetImage(image: capturedInage)
+    }
+    
+    @IBAction func scalePiece(_ gestureRecognizer : UIPinchGestureRecognizer)
+    {
+        let val = -gestureRecognizer.velocity
+        cameraController.Zoom(val: Float(val))
+        renderer.viewMatrix = cameraController.GetViewMatrix()//cameraController.viewMatrix
+    }
+    
+    @IBAction func DoubleTap(_ swipeGesture : UITapGestureRecognizer)
+    {
+        cameraController.Reset()
+        renderer.viewMatrix = cameraController.GetViewMatrix()
+    }
+    
+    @IBAction func Swipe(_ swipeGesture : UISwipeGestureRecognizer)
+    {
+        let location = swipeGesture.location(in: mtkView)
+        if (swipeGesture.state == UIGestureRecognizerState.began || swipeGesture.state == UIGestureRecognizerState.ended) {
+            mPreviousPt = location;
+            return;
+        }
+        let deltaPt = CGPoint.init(x: location.x - mPreviousPt.x, y: location.y - mPreviousPt.y)
+ 
+        cameraController.Rotate(deltaPt: deltaPt)
+        
+        renderer.viewMatrix = cameraController.GetViewMatrix()
+        mPreviousPt = location
+    }
+    
+    @IBAction func DoublePan(_ swipeGesture : UISwipeGestureRecognizer)
+    {
+        if(swipeGesture.numberOfTouches != 2)
+        {
+            return
+        }
+        let location = swipeGesture.location(in: mtkView)
+        if (swipeGesture.state == UIGestureRecognizerState.began || swipeGesture.state == UIGestureRecognizerState.ended) {
+            mPreviousPt = location;
+            return;
+        }
+        let deltaPt = CGPoint.init(x: location.x - mPreviousPt.x, y: location.y - mPreviousPt.y)
+ 
+        cameraController.Drag(pt: deltaPt)
+        
+        renderer.viewMatrix = cameraController.GetViewMatrix()
+        mPreviousPt = location
     }
     
     func image(with view: UIView) -> UIImage? {
@@ -187,7 +252,7 @@ class ViewController: NSUIViewController, UIDocumentPickerDelegate, RPPreviewVie
         previewController.dismiss(animated: true, completion: nil)
     }
 
-    #if os(iOS)
+    #if false
     var trackedTouch: UITouch?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -205,7 +270,7 @@ class ViewController: NSUIViewController, UIDocumentPickerDelegate, RPPreviewVie
             if touches.contains(previouslyTrackedTouch) {
                 let point = previouslyTrackedTouch.location(in: view)
                 cameraController.dragged(to: point)
-                renderer.viewMatrix = cameraController.viewMatrix
+                renderer.viewMatrix = cameraController.GetViewMatrix()//cameraController.viewMatrix
             }
         }
     }
@@ -214,6 +279,7 @@ class ViewController: NSUIViewController, UIDocumentPickerDelegate, RPPreviewVie
         if let previouslyTrackedTouch = trackedTouch {
             if touches.contains(previouslyTrackedTouch) {
                 self.trackedTouch = nil
+               // cameraController.StopDrag()
             }
         }
     }
@@ -225,21 +291,6 @@ class ViewController: NSUIViewController, UIDocumentPickerDelegate, RPPreviewVie
             }
         }
     }
-    
-    
-#elseif os(macOS)
-    override func mouseDown(with event: NSEvent) {
-        var point = view.convert(event.locationInWindow, from: nil)
-        point.y = view.bounds.size.height - point.y
-        cameraController.startedInteraction(at: point)
-    }
-
-    override func mouseDragged(with event: NSEvent) {
-        var point = view.convert(event.locationInWindow, from: nil)
-        point.y = view.bounds.size.height - point.y
-        cameraController.dragged(to: point)
-        renderer.viewMatrix = cameraController.viewMatrix
-    }
-#endif
+    #endif
 }
 
