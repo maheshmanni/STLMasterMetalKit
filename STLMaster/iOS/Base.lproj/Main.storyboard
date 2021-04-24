@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uQE-R6-bdO">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="0Bn-Hr-ohG">
+            <objects>
+                <navigationController toolbarHidden="NO" id="uQE-R6-bdO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SPx-x1-60B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VYH-TL-edr">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5Jr-Su-Jwd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcF-jX-H9X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1390" y="-84"/>
+        </scene>
+        <!--Preview View Controller-->
+        <scene sceneID="z7R-6O-AWk">
+            <objects>
+                <viewController storyboardIdentifier="PreView" id="teV-2z-uex" customClass="PreviewViewController" customModule="Rendering_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FRz-mP-Qq4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gtx-KL-aZG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xX8-vJ-FmX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem tag="100" systemItem="cancel" id="a8C-w5-Qyy">
+                                        <connections>
+                                            <action selector="OnToolItemClick:" destination="teV-2z-uex" id="bfr-sW-blv"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5me-ez-pyt"/>
+                                    <barButtonItem tag="101" image="square.and.arrow.up" catalog="system" id="MIp-xm-Uyw">
+                                        <connections>
+                                            <action selector="OnToolItemClick:" destination="teV-2z-uex" id="evT-0a-Fnb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="102" systemItem="save" id="IZy-4U-j3O">
+                                        <connections>
+                                            <action selector="OnToolItemClick:" destination="teV-2z-uex" id="rFG-ST-yyw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XB3-ue-puq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Gtx-KL-aZG" firstAttribute="top" secondItem="XB3-ue-puq" secondAttribute="top" id="9g9-SH-Pxq"/>
+                            <constraint firstItem="xX8-vJ-FmX" firstAttribute="leading" secondItem="XB3-ue-puq" secondAttribute="leading" id="HgO-RD-qi2"/>
+                            <constraint firstItem="XB3-ue-puq" firstAttribute="bottom" secondItem="Gtx-KL-aZG" secondAttribute="bottom" id="Hqj-ds-L9V"/>
+                            <constraint firstItem="xX8-vJ-FmX" firstAttribute="trailing" secondItem="XB3-ue-puq" secondAttribute="trailing" id="MZq-Vb-DVt"/>
+                            <constraint firstItem="Gtx-KL-aZG" firstAttribute="leading" secondItem="XB3-ue-puq" secondAttribute="leading" id="VkS-ih-3Xt"/>
+                            <constraint firstItem="xX8-vJ-FmX" firstAttribute="top" secondItem="XB3-ue-puq" secondAttribute="top" id="bmu-6c-zt7"/>
+                            <constraint firstItem="XB3-ue-puq" firstAttribute="trailing" secondItem="Gtx-KL-aZG" secondAttribute="trailing" id="cZw-iQ-d5Q"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eiz-gD-GC6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2066" y="647"/>
+        </scene>
+        <!--Preview View Controller-->
+        <scene sceneID="zuG-vN-EXW">
+            <objects>
+                <viewController id="FDj-bT-FhF" customClass="PreviewViewController" customModule="Rendering_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <imageView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="gEj-bT-76b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1JJ-06-iAE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1262" y="597"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Rendering_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="MTKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="r2L-fU-6mg"/>
+                        <barButtonItem tag="100" image="ic_gold" id="4oX-bR-5cl">
+                            <connections>
+                                <action selector="OnGoldType:" destination="BYZ-38-t0r" id="rXT-cN-Frd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem tag="101" image="ic_silver" id="EB7-0k-34Z">
+                            <connections>
+                                <action selector="OnGoldType:" destination="BYZ-38-t0r" id="OHi-It-W7j"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem tag="102" image="ic_rose" id="m0M-hy-30X">
+                            <connections>
+                                <action selector="OnGoldType:" destination="BYZ-38-t0r" id="cfd-IB-4qw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem tag="103" image="ic_grey" id="t9F-Cd-hMF">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="OnGoldType:" destination="BYZ-38-t0r" id="yzl-Jr-6kt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem tag="104" image="ic_grey" id="M3i-yW-ZEd">
+                            <color key="tintColor" systemColor="linkColor"/>
+                            <connections>
+                                <action selector="OnGoldType:" destination="BYZ-38-t0r" id="fza-d4-CVd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem tag="105" image="ic_grey" id="fB4-O2-1vF">
+                            <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                            <connections>
+                                <action selector="OnGoldType:" destination="BYZ-38-t0r" id="40c-Nf-TxH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="8L8-on-NCT"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="vNR-kK-15j">
+                        <leftBarButtonItems>
+                            <barButtonItem tag="1000" image="cloud" catalog="system" id="9R5-rn-TBB">
+                                <connections>
+                                    <action selector="OnToolButton:" destination="BYZ-38-t0r" id="6Kx-13-kIP"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="1001" image="arrowshape.turn.up.left.fill" catalog="system" id="O77-5D-9OJ">
+                                <connections>
+                                    <action selector="OnToolButton:" destination="BYZ-38-t0r" id="T7h-Eg-sCx"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="1002" image="trash" catalog="system" id="Ejg-eW-D8o">
+                                <connections>
+                                    <action selector="OnToolButton:" destination="BYZ-38-t0r" id="uK8-sa-X1g"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
+                            <barButtonItem tag="1005" image="mic" catalog="system" id="hAI-Fx-6u1">
+                                <connections>
+                                    <action selector="OnToolButton:" destination="BYZ-38-t0r" id="yse-uD-xI1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="1004" image="record.circle" catalog="system" id="Hlm-pu-tcP">
+                                <color key="tintColor" systemColor="linkColor"/>
+                                <connections>
+                                    <action selector="OnToolButton:" destination="BYZ-38-t0r" id="XYS-fX-COk"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="1003" image="camera" catalog="system" id="Q4Q-1X-V7J">
+                                <connections>
+                                    <action selector="OnToolButton:" destination="BYZ-38-t0r" id="XRu-bx-OKZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="micBtn" destination="hAI-Fx-6u1" id="CJe-gW-ag6"/>
+                        <outlet property="recordBtn" destination="Hlm-pu-tcP" id="klh-Yr-loO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-470" y="273"/>
+        </scene>
+        <!--Stl Master Cloud View Controller-->
+        <scene sceneID="pP8-xH-qQh">
+            <objects>
+                <viewController storyboardIdentifier="Cloud" id="9lN-0a-eKP" customClass="StlMasterCloudViewController" customModule="Rendering_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4ih-AK-aOz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zdM-dW-MRf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kA2-ge-CTi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-719" y="-425"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrowshape.turn.up.left.fill" catalog="system" width="128" height="106"/>
+        <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="cloud" catalog="system" width="128" height="87"/>
+        <image name="ic_gold" width="29" height="29"/>
+        <image name="ic_grey" width="29" height="29"/>
+        <image name="ic_rose" width="29" height="29"/>
+        <image name="ic_silver" width="29" height="29"/>
+        <image name="mic" catalog="system" width="108" height="128"/>
+        <image name="record.circle" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
